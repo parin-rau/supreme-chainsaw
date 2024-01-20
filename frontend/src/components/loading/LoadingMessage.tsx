@@ -19,7 +19,7 @@ export default function LoadingMessage() {
       );
     };
     timer();
-  }, [messages.length]);
+  }, [index, messages.length]);
 
   return <h2>{messages[index]}</h2>;
 }
