@@ -9,7 +9,9 @@ export default function RootLayout() {
       <div className="grid sm:grid-cols-[128px_auto]">
         <Sidebar />
         <div className="hidden sm:block" />
-        <Outlet />
+        <div className="pt-20 px-2">
+          <Outlet />
+        </div>
       </div>
     </>
   );
