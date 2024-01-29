@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
 
+const baseMessage = "Loading";
+const messages = [
+  baseMessage,
+  baseMessage + ".",
+  baseMessage + "..",
+  baseMessage + "...",
+];
+
 export default function LoadingMessage() {
   const [index, setIndex] = useState(0);
-  const baseMessage = "Loading";
-  const messages = [
-    baseMessage,
-    baseMessage + ".",
-    baseMessage + "..",
-    baseMessage + "...",
-  ];
 
   useEffect(() => {
-    const timer = () => {
-      const limit = 300;
-      setTimeout(
-        () => setIndex((prev) => (prev === messages.length - 1 ? 0 : prev + 1)),
-        limit,
-      );
-    };
-    timer();
-  }, [index, messages.length]);
+    const limit = 300;
+    const timer = setTimeout(
+      () => setIndex((prev) => (prev === messages.length - 1 ? 0 : prev + 1)),
+      limit,
+    );
 
-  return <h2>{messages[index]}</h2>;
+    return () => clearTimeout(timer);
+  }, [index]);
+
+  return <h2 className="text-xl font-semibold">{messages[index]}</h2>;
 }
